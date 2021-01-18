@@ -1,0 +1,288 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.12
+-- Dumped by pg_dump version 9.6.12
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: educations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.educations (
+    id_educations integer NOT NULL,
+    level_educations character varying(255),
+    institution_educations character varying(255),
+    faculty_educations character varying(255),
+    specialization_educations character varying(255),
+    yearend_educations character varying(10),
+    id_resume integer
+);
+
+
+ALTER TABLE public.educations OWNER TO postgres;
+
+--
+-- Name: educations_id_educations_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.educations_id_educations_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.educations_id_educations_seq OWNER TO postgres;
+
+--
+-- Name: educations_id_educations_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.educations_id_educations_seq OWNED BY public.educations.id_educations;
+
+
+--
+-- Name: resume; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.resume (
+    id_resume integer NOT NULL,
+    status_resume character varying(200),
+    imgurl_resume character varying(255),
+    firstname_resume character varying(200),
+    secondname_resume character varying(200),
+    phone_resume numeric,
+    email_resume character varying(255),
+    city_resume character varying(200),
+    birthday_resume date,
+    gender_resume character varying(20),
+    work_experience_resume character varying(100),
+    profession_resume character varying(100),
+    education_level_resume character varying(100),
+    salary_resume numeric,
+    currency_resume character(3),
+    ability_resume text,
+    about_resume text
+);
+
+
+ALTER TABLE public.resume OWNER TO postgres;
+
+--
+-- Name: resume_id_resume_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.resume_id_resume_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.resume_id_resume_seq OWNER TO postgres;
+
+--
+-- Name: resume_id_resume_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.resume_id_resume_seq OWNED BY public.resume.id_resume;
+
+
+--
+-- Name: specialties; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.specialties (
+    id_specialties integer NOT NULL,
+    position_specialties character varying(255) NOT NULL,
+    salary_specialties numeric NOT NULL,
+    specializations_specialties character varying(255) NOT NULL,
+    dateentry_specialties date NOT NULL,
+    id_resume integer NOT NULL,
+    currency_specialties character(3)
+);
+
+
+ALTER TABLE public.specialties OWNER TO postgres;
+
+--
+-- Name: specialties_id_specialties_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.specialties_id_specialties_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.specialties_id_specialties_seq OWNER TO postgres;
+
+--
+-- Name: specialties_id_specialties_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.specialties_id_specialties_seq OWNED BY public.specialties.id_specialties;
+
+
+--
+-- Name: educations id_educations; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.educations ALTER COLUMN id_educations SET DEFAULT nextval('public.educations_id_educations_seq'::regclass);
+
+
+--
+-- Name: resume id_resume; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resume ALTER COLUMN id_resume SET DEFAULT nextval('public.resume_id_resume_seq'::regclass);
+
+
+--
+-- Name: specialties id_specialties; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.specialties ALTER COLUMN id_specialties SET DEFAULT nextval('public.specialties_id_specialties_seq'::regclass);
+
+
+--
+-- Data for Name: educations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.educations (id_educations, level_educations, institution_educations, faculty_educations, specialization_educations, yearend_educations, id_resume) FROM stdin;
+10	Среднее специальное	Слесарь	СЛР	СРА	2012	24
+11	Среднее специальное	Повар	ПВР	ПВР	2015	24
+29	Доктор наук	123	123	123	123	40
+34	Среднее специальное	weqw	wqeq	123	123	1
+22	Доктор наук	МГУ	ФВА	Меркейтинг	2012	34
+\.
+
+
+--
+-- Name: educations_id_educations_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.educations_id_educations_seq', 34, true);
+
+
+--
+-- Data for Name: resume; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.resume (id_resume, status_resume, imgurl_resume, firstname_resume, secondname_resume, phone_resume, email_resume, city_resume, birthday_resume, gender_resume, work_experience_resume, profession_resume, education_level_resume, salary_resume, currency_resume, ability_resume, about_resume) FROM stdin;
+37	Отказ	4d043c12.png	qweasda	ghjghjg	456456	fghfgffgh	fghfgh	1231-03-12	Мужской	Нет	fgdgd	Среднее	123123	РУБ	asfasf	asfas
+40	Отказ	707f57c1.png	ghj	ghj	45456456	ghj	ghj	0123-12-12	Женский	Есть	sfsdf	Среднее специальное	342	РУБ	sdfss	sdfsf
+1	Новый	.	Vadim	Samoylov	790869910	twi9gy@mail.ru	Lipetsk	1999-06-09	Мужской	Есть	Программист	Среднее специальное	1000	РУБ	Прогать	Прогаю
+3	Принят	4d043c12.png	Дмитрий	Лапыгин	82139012390	dima@mail.ru	Липецк	2000-01-01	Мужской	Есть	Программист	Среднее	1000	РУБ	Прогать	Прогаю
+24	Принят	4d043c12.png	Иван	Иванов	8902321	Иван@mail.ru	Иван	2002-02-02	Мужской	Есть	Слесарь	Среднее специальное	30000	РУБ	Варю	Красавчик
+34	Новый	4d043c12.png	Алина	Кротова	890123	qwe@mail.ru	Москва	1992-03-12	Женский	Есть	Маркетолог	Среднее специальное	100000	РУБ	Продаю, хвалю	Разбираюсь в вещах 
+2	Назначено собеседование	6f984341.png	Робот	Рыбин	81092312	art@mail.rukj	Lipetsk	1999-04-14	Мужской	Нет	Программист	Среднее	12	EUR	Прогать	Прогаю
+4	Назначено собеседование	4d043c12.png	Илья	Куранов	8912412	ily@mail.ru	Липецк	1999-02-02	Мужской	Есть	Программист	Среднее	10390	РУБ	Прогаnm	Прогаю
+\.
+
+
+--
+-- Name: resume_id_resume_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.resume_id_resume_seq', 40, true);
+
+
+--
+-- Data for Name: specialties; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.specialties (id_specialties, position_specialties, salary_specialties, specializations_specialties, dateentry_specialties, id_resume, currency_specialties) FROM stdin;
+1	Слесарь	30000	Слесарь	2019-11-20	24	\N
+2	Повар	30000	Кондитер	2018-10-19	24	\N
+16	qweqwe	123	qeqwq	3810-02-19	40	РУБ
+18	qwe	123	qe	0001-03-12	1	USD
+17	Маркетолог1	75000	Маркетолог	0012-03-12	34	USD
+19	sda	123	qwe	0123-03-12	4	РУБ
+\.
+
+
+--
+-- Name: specialties_id_specialties_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.specialties_id_specialties_seq', 19, true);
+
+
+--
+-- Name: educations educations_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.educations
+    ADD CONSTRAINT educations_pk PRIMARY KEY (id_educations);
+
+
+--
+-- Name: resume resume_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resume
+    ADD CONSTRAINT resume_pk PRIMARY KEY (id_resume);
+
+
+--
+-- Name: specialties specialties_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.specialties
+    ADD CONSTRAINT specialties_pk PRIMARY KEY (id_specialties);
+
+
+--
+-- Name: educations fk_educations_included_resume; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.educations
+    ADD CONSTRAINT fk_educations_included_resume FOREIGN KEY (id_resume) REFERENCES public.resume(id_resume) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- Name: specialties fk_specialties_worked_resume; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.specialties
+    ADD CONSTRAINT fk_specialties_worked_resume FOREIGN KEY (id_resume) REFERENCES public.resume(id_resume) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
